@@ -1,0 +1,59 @@
+:root{
+  --primary:#0A1833;
+  --secondary: #CDEAF0;
+  --parchment: #F8F0E5;
+}
+header {
+background-color: var(--primary);
+color:var(--secondary)
+}
+.Goods{
+ background-color:var(--secondary); 
+ padding: 10px;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content:space-around; 
+}
+.good{
+  background-color: var(--parchment);
+  border: 1px solid var(--primary);
+  margin: 10px;
+  width: 22%;
+  text-align: center;
+  padding: 10px;
+}
+.good p{
+text-align: left;
+}
+.good img{
+max-width: 100%;
+max-height: 200px;
+object-fit: contain;
+}
+.hero-image{
+  background-image:url(Assets/img/hero-image.jpg);
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.shopkeeper-image{
+  margin-right: 15px;
+  max-width: 200px;
+  max-height: 250px;
+  
+}
+.wizbang{
+  max-height: 250px;
+  object-fit: contain;
+  transform: scaleX(-100%);
+  
+}
+
+.shopkeep-text{
+  background-color: rgba(80, 53, 23, 0.74);
+  max-width: 60vh;
+padding: 1rem;
+color: white;
+}
