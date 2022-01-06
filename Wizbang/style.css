@@ -61,7 +61,7 @@ header{
   color: white;
 }
 footer{
-  color:whitesmoke;
+  color:var(--parchment);
   text-align: center;
   background-color: #0A1833;
 }
