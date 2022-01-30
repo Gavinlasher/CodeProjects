@@ -1,9 +1,101 @@
-body{
-  background-color: wheat;
+:root{
+ --primary:#f393fd;
+ --secondary:rgb(230, 222, 222);
+ --shadow:2px 0 8px rgba(0, 0, 0, .9);
+ --corners: 6px;
+ --text-color:rgb(31, 23, 23);
+ --light:rgb(253, 249, 249);
+ --primary-dark:rgb(200, 24, 219);
+ --dark:rgb(15, 15, 15);
 }
+
+body{
+  background-color:var(--secondary);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16pt;
+  color:var(--text-color);
+}
+.header{
+  margin: 3em 0;
+
+}
+
+.logo-container{
+  
+  filter: drop-shadow(var(--shadow));
+
+}
+img{
+  max-width: 100%;
+}
+form{
+  margin: 0;
+}
+input{
+  background-color: transparent;
+  border: none;
+  border-bottom:1px solid var(--text-color) ;
+  outline: none;
+  font-size: 14pt;
+  font-family: "Permanent Marker", cursive;
+}
+button{
+  background-color: var(--primary);
+  color: var(--light);
+  border: 1px solid var(--primary-dark);
+  border-radius: var(--corners);
+  box-shadow: var(--shadow);
+  text-transform: uppercase;
+  transition:all 2s ease;
+  cursor: pointer;
+
+}
+button:hover{
+  background-color: var(--primary-dark);
+}
+
 .balloon{
   height: 120px;
   width: 100px;
   background-color: blue;
   border-radius: 50%;
+  transition:all 2s ease;
+}
+.container{
+  width: 50%;
+  margin: auto;
+}
+
+
+
+.card{
+  background-color:var(--light);
+  padding: 1em;
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
+  
+}
+.shadow{
+  filter:drop-shadow(var(--shadow));
+}
+.d-flex.space-between{
+  display: flex;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+.d-flex.space-around{
+  justify-content: space-around;
+}
+
+.dark{
+background-color:var(--dark);
+}
+.text-light{
+  color:var(--light);
+}
+
+.hidden{
+  display: none;
 }

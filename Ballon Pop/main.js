@@ -1,6 +1,14 @@
 let Startbutton = document.getElementById("start-button")
 let Inflatebutton = document.getElementById("inflate-button")
+
+
+//#region  Game Logic and data
+
+
+
+
 // DATA
+
 let clickCount = 0
 let height = 120
 let width = 100
@@ -11,6 +19,8 @@ let currentpopcount = 0
 let gamelength = 5000
 let clckid = 0
 let timeRemaining = 0
+let currentPlayer = {}
+
 
  
 
@@ -57,6 +67,8 @@ function draw(){
   let clickCountElem = document.getElementById("click-count")
  let popcountElem = document.getElementById("pop-count")
  let highpopcountElem = document.getElementById("high-score")
+ let playerNameElem = document.getElementById("player-name")
+
  
   balloonElement.style.height = height + "px"
   balloonElement.style.width = width + "px"
@@ -64,7 +76,9 @@ function draw(){
 
   clickCountElem.innerText = clickCount
   popcountElem.innerText = currentpopcount
- highpopcountElem.innerText = highestpopcount
+ highpopcountElem.innerText = currentPlayer.highscore
+
+ playerNameElem.innerText = currentPlayer.name
  }
 
  function stopgame(){
@@ -77,12 +91,60 @@ clickCount= 0
 height= 120
 width= 100
 
-if(currentpopcount > highestpopcount){
-  highestpopcount = currentpopcount
+if(currentpopcount > currentPlayer.highscore){
+  currentPlayer.highscore = currentpopcount
+  savePlayers()
 }
 currentpopcount = 0
 
 stopclock()
 draw()
 
+ }
+
+ // //#endregionendregion
+
+ let players =[]
+ loadPlayers()
+
+ function setPlayer(event){
+event.preventDefault()
+let form = event.target
+
+let playerName = form.playerName.value
+
+ currentPlayer = players.find(player => player.name == playerName)
+
+if(!currentPlayer){
+  currentPlayer = {name: playerName,highscore: 0}
+  players.push(currentPlayer)
+  savePlayers()
+}
+
+
+
+
+
+
+form.reset()
+document.getElementById("game").classList.remove("hidden")
+form.classList.add("hidden")
+
+draw()
+ }
+ function changePlayer(){
+  document.getElementById("player-form").classList.remove("hidden")
+document.getElementById("game").classList.add("hidden")
+ }
+ function savePlayers(){
+   window.localStorage.setItem("players",JSON.stringify(players))
+ }
+ function loadPlayers(){
+   let playersData = JSON.parse(window.localStorage.getItem("players"))
+   if(!playersData){
+     players= []
+   }else{
+     players = playersData
+   }
+  
  }

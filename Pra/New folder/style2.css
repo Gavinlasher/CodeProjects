@@ -1,0 +1,14 @@
+.name{
+  color: rgb(224, 210, 210);
+  font-family: Arial, Helvetica, sans-serif;
+  border: 10px solid blue;
+  border-radius: 6px;
+  width: 50%;
+  text-align: center;
+margin:auto;
+}
+
+body {
+background-color: black;
+}
+
