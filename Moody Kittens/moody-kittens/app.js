@@ -49,8 +49,6 @@ function loadKittens() {
     kittens = kittensData
   }
   }
-
-
 /**
  * Draw all of the kittens to the kittens element
  */
@@ -148,17 +146,14 @@ document.getElementById("kittens").classList.remove(kitten.mood)
 document.getElementById("kittens").classList.add(kitten.mood)
 saveKittens()
 }
-
 function getStarted() {
   document.getElementById("welcome").remove();
   drawKittens();
 }
-
 /**
  * Defines the Properties of a Kitten
  * @typedef {{id: string, name: string, mood: string, affection: number}} Kitten
  */
-
 /**
  * Used to generate a random string id for mocked
  * database generated Id
@@ -179,4 +174,3 @@ refreshKittens()
     localStorage.setItem("kittens",JSON.stringify(kittens))
     drawKittens();
   }
-  
