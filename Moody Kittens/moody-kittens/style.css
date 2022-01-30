@@ -146,7 +146,6 @@ button.btn-special:hover{
 }
 .kitten.gone{
   color: var(--danger);
-  pointer-events: none;
 }
 
 .bg-dark{

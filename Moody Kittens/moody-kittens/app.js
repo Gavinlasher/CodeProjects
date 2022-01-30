@@ -5,8 +5,8 @@
 let kittens = []
 let affection = 5
 let mood = ""
-
-
+let petButton = document.getElementById("petBtn");
+let nipButton = document.getElementById("nipBtn");
 /**
  * Called when submitting the new Kitten Form
  * This method will pull data from the form
@@ -18,29 +18,18 @@ let mood = ""
  */
 function addKitten(event) {
 event.preventDefault()
-
 let form = event.target
-
 let kitten = {
   id: generateId(),
   name:form.name.value,
   mood:"tolerant",
   affection: 5,
 }
-
-
-  if (form.name.value == ""){alert("fill out a kitten name")}
-
-  else {
-
   kittens.push(kitten)
   saveKittens()
-  
-
-
 form.reset()
 drawKittens()
-}}
+}
 /**
  * Converts the kittens array to a JSON string then
  * Saves the string to localstorage at the key kittens
@@ -59,10 +48,6 @@ function loadKittens() {
   if(kittensData){
     kittens = kittensData
   }
-
-
-
-  
   }
 
 
@@ -72,28 +57,41 @@ function loadKittens() {
 function drawKittens() {
  loadKittens()
  let kittenElem = document.getElementById("kittens")
- let kittensTemplate = ""
- 
- 
- kittens.forEach(kitten => {
+ let kittensTemplate = "" 
+ kittens.forEach((kitten, i) => {
+   if (kitten.mood === "gone"){
+    kittensTemplate +=`
+    <div class="bg-dark kitten ${kitten.mood} text-light">
+      <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4&size=150x150">
+      <div class="d-flex justify-content-center">Name: ${kitten.name}</div>
+      <div class="d-flex justify-content-center">Mood: ${kitten.mood}</div>
+      <div class="d-flex justify-content-center">Affection: ${kitten.affection}</div>
+      <div class="d-flex space-between"></div>
+      <button id="petBtn" disabled class="btn-cancel m-1" onclick="pet('${kitten.id}')">Pet kitty</button>
+      <button id="nipBtn" disabled class="m-1"  onclick="catnip('${kitten.id}')">Catnip</button>
+      <div class="d-flex justify-content-center"><button class="btn-cancel m-1" onclick="removeKitten(${i})">Delete Kitten</div>
+      </div>
+    </div>
+  `
+   }
+   else{
   kittensTemplate +=`
   <div class="cat-border bg-dark kitten ${kitten.mood} text-light">
     <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4&size=150x150">
     <div class="d-flex justify-content-center">Name: ${kitten.name}</div>
     <div class="d-flex justify-content-center">Mood: ${kitten.mood}</div>
-    <div class="d-flex justify-content-center">Affection: ${kitten.affection}</div>
+    <div class="d-flex justify-content-center">Affection:${kitten.affection}</div>
     <div class="d-flex space-between"></div>
-    <button class="btn-cancel m-1" onclick="pet('${kitten.id}')">Pet kitty</button>
-    <button class="m-1" onclick="catnip('${kitten.id}')">Catnip</button>
-    <div class="d-flex justify-content-center"><button class="btn-cancel m-1" onclick="removeKitten('${kitten.id}')">Delete Kitten</div>
+    <button id="petBtn" class="btn-cancel m-1" onclick="pet('${kitten.id}')">Pet kitty</button>
+    <button id="nipBtn" class="m-1"  onclick="catnip('${kitten.id}')">Catnip</button>
+    <div class="d-flex justify-content-center"><button class="btn-cancel m-1" onclick="removeKitten(${i})">Delete Kitten</div>
     </div>
   </div>
 `
+   }
 })
-
 kittenElem.innerHTML = kittensTemplate
 }
-
 /**
  * Find the kitten in the array by its id
  * @param {string} id
@@ -102,7 +100,6 @@ kittenElem.innerHTML = kittensTemplate
 function findKittenById(id) {
   return kittens.find(k => k.id == id);
 }
-
 /**
  * Find the kitten in the array of kittens
  * Generate a random Number
@@ -123,9 +120,6 @@ if (randomNumber > .7){
 else curKitten.affection--;
 setKittenMood(curKitten)
 saveKittens()
-
-
-
 }
 /**
  * Find the kitten in the array of kittens
@@ -139,28 +133,20 @@ function catnip(id) {
   curKitten.affection = 5;
   curKitten.mood = "tolerant"
   saveKittens()
-
 }
-
 /**
  * Sets the kittens mood based on its affection
  * Happy > 6, Tolerant <= 5, Angry <= 3, Gone <= 0
  * @param {Kitten} kitten
  */
 function setKittenMood(kitten) {
-  document.getElementById("kittens").classList.remove(kitten.mood)
-if(kitten.affection >= 6){kitten.mood = "happy"}
-if (kitten.affection <= 5){kitten.mood = "tolerant"}
-if (kitten.affection <= 3){kitten.mood = "angry"}
-if (kitten.affection <= 0){kitten.mood = "gone"}
-
+document.getElementById("kittens").classList.remove(kitten.mood)
+  if(kitten.affection >= 6){kitten.mood = "happy"}
+  if (kitten.affection <= 5){kitten.mood = "tolerant"}
+  if (kitten.affection <= 3){kitten.mood = "angry"}
+  if (kitten.affection <= 0){kitten.mood = "gone"}
 document.getElementById("kittens").classList.add(kitten.mood)
 saveKittens()
-
-
-
-
-
 }
 
 function getStarted() {
@@ -185,8 +171,12 @@ function generateId() {
     Math.floor(Math.random() * 10000000)
   );
 }
-function removeKitten(){
-  
+function removeKitten(i){
+kittens.splice(i,1)
+refreshKittens()
 } 
-  
+  function refreshKittens(){
+    localStorage.setItem("kittens",JSON.stringify(kittens))
+    drawKittens();
+  }
   
