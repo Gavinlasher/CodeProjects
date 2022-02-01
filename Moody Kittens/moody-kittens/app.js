@@ -17,15 +17,23 @@ let nipButton = document.getElementById("nipBtn");
  * Then reset the form
  */
 function addKitten(event) {
-event.preventDefault()
-let form = event.target
-let kitten = {
-  id: generateId(),
-  name:form.name.value,
-  mood:"tolerant",
-  affection: 5,
-}
-  kittens.push(kitten)
+  event.preventDefault()
+  let form = event.target
+  let kitten = {
+    id: generateId(),
+    name:form.name.value,
+    mood:"tolerant",
+    affection: 5,
+  }
+  let kittenName = form.name.value
+  if(kittens.some(x => x.name == kittenName)){
+     alert("choose a differnt name")
+     return
+  }
+  //[2, 5, 8, 1, 4].some(x => x > 10);  // false
+//[12, 5, 8, 1, 4].some(x => x > 10); // true
+  
+kittens.push(kitten)
   saveKittens()
 form.reset()
 drawKittens()
@@ -59,7 +67,7 @@ function drawKittens() {
  kittens.forEach((kitten, i) => {
    if (kitten.mood === "gone"){
     kittensTemplate +=`
-    <div class="bg-dark kitten ${kitten.mood} text-light">
+    <div class="og kitten ${kitten.mood} text-light">
       <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4&size=150x150">
       <div class="d-flex justify-content-center">Name: ${kitten.name}</div>
       <div class="d-flex justify-content-center">Mood: ${kitten.mood}</div>
@@ -70,11 +78,15 @@ function drawKittens() {
       <div class="d-flex justify-content-center"><button class="btn-cancel m-1" onclick="removeKitten(${i})">Delete Kitten</div>
       </div>
     </div>
+
+
+
+    
   `
    }
    else{
   kittensTemplate +=`
-  <div class="cat-border bg-dark kitten ${kitten.mood} text-light">
+  <div class="og kitten ${kitten.mood} text-light">
     <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4&size=150x150">
     <div class="d-flex justify-content-center">Name: ${kitten.name}</div>
     <div class="d-flex justify-content-center">Mood: ${kitten.mood}</div>
@@ -85,6 +97,10 @@ function drawKittens() {
     <div class="d-flex justify-content-center"><button class="btn-cancel m-1" onclick="removeKitten(${i})">Delete Kitten</div>
     </div>
   </div>
+
+
+
+
 `
    }
 })

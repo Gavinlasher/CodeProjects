@@ -153,6 +153,9 @@ button.btn-special:hover{
 .text-light{
   color: var(--light)
 }
+.og{
+  background-color: rgb(48, 48, 48);
+}
 
 .btn-dark{
   background-color: var(--dark-lighten);
