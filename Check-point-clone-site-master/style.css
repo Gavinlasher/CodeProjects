@@ -1,0 +1,45 @@
+:root{
+    --primary:#4b74ce;
+    --light: rgb(241, 241, 241);
+
+}
+.lol-logo{
+    height: 5vh;
+    width: 5vh;
+    border-radius: 5px;
+}
+h2{
+    color: var(--light);
+    box-shadow: whitesmoke;
+}
+.bg-img{
+    background-image: url(https://images.unsplash.com/photo-1633545495735-25df17fb9f31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80);
+    min-height: 50vh;
+    background-size: cover;
+    background-position: center;
+}
+.champion-icons{
+    height: 5vh;
+    width: 5vh;    
+}
+.bg-light-primary{
+    background-color:#3d60ac80;
+    backdrop-filter:blur(15px);
+    border: 1px solid #4973cf;
+    border-radius: 5px;
+}
+.vanye-pic{
+height:50vh;
+width: 30vh;
+object-fit: cover;
+padding: 1rem;
+
+}
+
+
+
+@media  screen and (min-width:768px) {
+    .move-down{
+        transform: translate(160px, 150px);
+}
+}

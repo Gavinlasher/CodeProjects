@@ -1,0 +1,61 @@
+:root {
+    --Primary: #367C2B;
+}
+
+header {
+    border-bottom: 1px solid rgb(80, 79, 79);
+}
+
+
+
+.img-logo { 
+    height: 20vh;
+    width:  20vh;
+    object-fit: contain;
+}
+
+.logo-text {
+    
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--Primary);
+}
+
+.product-img {
+object-fit: contain;
+height: 25vh;
+width: 25vh;
+}
+.product-btn {
+    transform: translateY(-90%);
+    text-decoration: none;
+    color: black;
+}
+.nav-btn {
+    text-decoration: none;
+    color: black;
+}
+.story-btn {
+    transform: translate(7vh, -14vh);
+}
+
+.story-img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+.icons {
+    height: 7vh;
+    width: 7vh;
+    object-fit: contain;
+}
+
+.big-track{
+padding: 0px 20px;
+margin: 40px 0px 0px;
+}
+.teemo {
+padding: 10px 20px;
+margin: 3px 31px 0px;
+}
